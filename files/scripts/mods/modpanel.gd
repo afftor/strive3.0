@@ -10,7 +10,7 @@ var file_dictionary = {}
 var mods_dictionary = {}
 
 func add_items():
-	var mods = globals.dir_contents("res://mods")
+	var mods = globals.dir_contents("res://user_mods")
 	var files = globals.dir_contents("res://files")
 	for i in files:
 		if(i.find(".gd") != -1):
@@ -62,7 +62,7 @@ func apply_mod_to_dictionary(string):
 	full_func.compile("func\\s+(\\w*).*([\r\n]*[\\t#]+.*)*")
 	var next_match = full_func.search_all(string)
 	var full_var = RegEx.new()
-	full_var.compile("[\r\n]+(var.*)")
+	full_var.compile("[\r\n]+(var.*=).*")
 	var next_var_match = full_var.search_all(string)
 	for key in file_dictionary.keys():
 		var file_string = file_dictionary[key]
